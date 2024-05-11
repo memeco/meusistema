@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using CadastroNotas.Controllers;
 
 namespace CadastroNotas.Views
 {
@@ -15,17 +13,9 @@ namespace CadastroNotas.Views
             Console.Write("Escolha uma opção: ");
         }
 
-        public static void ExibirBoletim(AlunoController controller)
-        {
-            Console.WriteLine("===== Boletim =====");
-            controller.MostrarBoletim();
-            Console.WriteLine("====================");
-        }
-
         public static void LimparTela()
         {
             Console.Clear();
         }
     }
 }
-

@@ -1,39 +1,39 @@
 using System;
-using System.Collections.Generic;
 using CadastroNotas.Models;
 
 namespace CadastroNotas.Controllers
 {
     public class AlunoController
     {
-        //campo privado para armazenar a lista de objetos 'Aluno' 
-        private List<Aluno> alunos;
+        private Aluno aluno;
 
-        //construtor que inicializa a lista de alunos
-        public AlunoController()
+        public void CadastrarAluno(string nome, double nota1Portugues, double nota2Portugues, double nota1Matematica, double nota2Matematica)
         {
-            alunos = new List<Aluno>();
-        }
+            aluno = new Aluno(nome)
+            {
+                Nota1Portugues = nota1Portugues,
+                Nota2Portugues = nota2Portugues,
+                Nota1Matematica = nota1Matematica,
+                Nota2Matematica = nota2Matematica
+            };
 
-        //método público que permite cadastrar um novo aluno na lista
-        public void CadastrarAluno(string nome, double nota1, double nota2)
-        {
-            alunos.Add(new Aluno(nome, nota1, nota2));
+            Console.WriteLine($"Aluno {aluno.Nome} cadastrado com sucesso!");
         }
 
         public void MostrarBoletim()
         {
-            Console.WriteLine("===Boletim===");
-            foreach (var aluno in alunos)
+            if (aluno == null)
             {
-                Console.WriteLine($"Aluno: {aluno.Nome}");
-                Console.WriteLine($"Nota 1: {aluno.Nota1}");
-                Console.WriteLine($"Nota 2: {aluno.Nota2}");
-                Console.WriteLine($"Média: {aluno.CalcularMedia()}");
-                Console.WriteLine("====================");
+                Console.WriteLine("Nenhum aluno cadastrado.");
+                return;
             }
+
+            Console.WriteLine($"===== Boletim do Aluno {aluno.Nome} =====");
+            Console.WriteLine("Português:");
+            Console.WriteLine($"Nota 1: {aluno.Nota1Portugues}, Nota 2: {aluno.Nota2Portugues}, Média: {aluno.CalcularMediaPortugues()}, Situação: {aluno.SituacaoPortugues()}");
+            Console.WriteLine("Matemática:");
+            Console.WriteLine($"Nota 1: {aluno.Nota1Matematica}, Nota 2: {aluno.Nota2Matematica}, Média: {aluno.CalcularMediaMatematica()}, Situação: {aluno.SituacaoMatematica()}");
+            Console.WriteLine("====================");
         }
     }
 }
-
-

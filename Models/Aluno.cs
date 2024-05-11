@@ -4,33 +4,37 @@ namespace CadastroNotas.Models
 {
     public class Aluno
     {
-        //declaração de propriedades
         public string Nome { get; set; }
-        public double Nota1 { get; set; }
-        public double Nota2 { get; set; }
+        public double Nota1Portugues { get; set; }
+        public double Nota2Portugues { get; set; }
+        public double Nota1Matematica { get; set; }
+        public double Nota2Matematica { get; set; }
 
-        //criação do método construtor
-        public Aluno(string nome, double nota1, double nota2)
+        public Aluno(string nome)
         {
             Nome = nome;
-            Nota1 = nota1;
-            Nota2 = nota2;
         }
 
-        //criação da função de média
-        public string CalcularMedia()
+        public double CalcularMediaPortugues()
         {
-            double media = (Nota1 + Nota2) / 2;
+            return (Nota1Portugues + Nota2Portugues) / 2;
+        }
 
-            if (media >= 7.0)
-            {
-                return "Aprovado com média " + media.ToString("F2");
-            }
-            else
-            {
-                return "Reprovado com média " + media.ToString("F2");
-            }
+        public double CalcularMediaMatematica()
+        {
+            return (Nota1Matematica + Nota2Matematica) / 2;
+        }
+
+        public string SituacaoPortugues()
+        {
+            double media = CalcularMediaPortugues();
+            return media >= 7.0 ? "Aprovado" : "Reprovado";
+        }
+
+        public string SituacaoMatematica()
+        {
+            double media = CalcularMediaMatematica();
+            return media >= 7.0 ? "Aprovado" : "Reprovado";
         }
     }
 }
-

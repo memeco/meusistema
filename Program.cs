@@ -8,9 +8,10 @@ namespace CadastroNotas
     {
         static void Main(string[] args)
         {
-            var controller = new AlunoController();
+            AlunoController controller = new AlunoController();
 
-            while (true)
+            bool sair = false;
+            while (!sair)
             {
                 View.ExibirMenu();
                 string opcao = Console.ReadLine();
@@ -18,23 +19,29 @@ namespace CadastroNotas
                 switch (opcao)
                 {
                     case "1":
-                        Console.Write("Nome do aluno: ");
-                        string nome = Console.ReadLine();
-                        Console.Write("Nota 1: ");
-                        double nota1 = double.Parse(Console.ReadLine());
-                        Console.Write("Nota 2: ");
-                        double nota2 = double.Parse(Console.ReadLine());
-                        controller.CadastrarAluno(nome, nota1, nota2);
+                        View.LimparTela();
+                        Console.WriteLine("Digite o nome do aluno:");
+                        string nomeAluno = Console.ReadLine();
+                        Console.WriteLine("Digite a nota 1 de Português:");
+                        double nota1Portugues = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Digite a nota 2 de Português:");
+                        double nota2Portugues = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Digite a nota 1 de Matemática:");
+                        double nota1Matematica = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Digite a nota 2 de Matemática:");
+                        double nota2Matematica = Convert.ToDouble(Console.ReadLine());
+
+                        controller.CadastrarAluno(nomeAluno, nota1Portugues, nota2Portugues, nota1Matematica, nota2Matematica);
                         break;
                     case "2":
                         View.LimparTela();
-                        View.ExibirBoletim(controller);
+                        controller.MostrarBoletim();
                         break;
                     case "3":
-                        Environment.Exit(0);
+                        sair = true;
                         break;
                     default:
-                        Console.WriteLine("Opção inválida!");
+                        Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida.");
                         break;
                 }
 
